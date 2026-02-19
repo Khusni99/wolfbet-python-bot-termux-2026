@@ -1,0 +1,936 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "version": "1.0.0",
+    "title": "API - WOLFBET.COM",
+    "termsOfService": "https://wolfbet-static.storage.googleapis.com/documents/Terms.pdf",
+    "contact": {
+      "email": "support@wolfbet.com",
+      "url": "https://wolfbet.com"
+    },
+    "x-logo": {
+      "url": "https://storage.googleapis.com/wolfbet-static/img/logo_black.png"
+    },
+    "description": "Documentation for wolfbet.com api <h1>Bearer token</h1> You can get bearer token from <a href=\"/user/settings?tab=api\">here</a>. <br /><br /> <h1>Example of usage:</h1> <code> curl --location  --request GET {ENDPOINT_URL}  --header \"X-Requested-With: XMLHttpRequest\" --header \"Authorization: Bearer PASTE-YOUR-BEARER-TOKEN-HERE\" </code> <br /><br /> <h1>Requests limit</h1> There is a limit of requests in time. In response headers search for: <br /><br /> <span> x-ratelimit-limit: [int]<br /> x-ratelimit-remaining: [int] </span> <br /><br /> When <i>x-ratelimit-remaining</i> drop to 0, then you have to wait 60 seconds before you can send next request.\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->"
+  },
+  "servers": [
+    {
+      "url": "https://wolfbet.com/api/v1"
+    }
+  ],
+  "paths": {
+    "/bet/place": {
+      "parameters": null,
+      "post": {
+        "tags": [
+          "Bet"
+        ],
+        "summary": "Place bet",
+        "description": "Place bet\n",
+        "operationId": "placeBet",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error when placing a bet"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "422": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/user/seed/refresh": {
+      "parameters": null,
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Change client seed",
+        "description": "change client seed\n",
+        "operationId": "changeClientSeed",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeClientSeedRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeClientSeedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error when changing seed"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "422": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/game/seed/refresh": {
+      "parameters": null,
+      "get": {
+        "tags": [
+          "Game"
+        ],
+        "summary": "Change server seed",
+        "description": "change server seed\n",
+        "operationId": "changeServerSeed",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeServerSeedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error when changing seed"
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "422": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/user/stats/race": {
+      "parameters": null,
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get user stats race",
+        "description": "Get user stats race\n",
+        "operationId": "getUserStatsRace",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserStatsRaceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "No race or No bets in current race"
+          },
+          "401": {
+            "description": "Not authenticated"
+          }
+        }
+      }
+    },
+    "/user/stats/bets": {
+      "parameters": null,
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get user stats about bets",
+        "description": "Get user stats bets\n",
+        "operationId": "getUserStatsBets",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserStatsBetsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          }
+        }
+      }
+    },
+    "/user/balances": {
+      "parameters": null,
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get user balances",
+        "description": "Get user balances\n",
+        "operationId": "getUserBalances",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserBalancesResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "BetRequest": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "description": "Currency",
+            "type": "string",
+            "enum": [
+              "btc",
+              "eth",
+              "ltc",
+              "doge",
+              "trx",
+              "bch",
+              "xrp",
+              "usdt",
+              "uni",
+              "sushi",
+              "xlm",
+              "etc",
+              "bnb",
+              "dot",
+              "ada",
+              "shib",
+              "matic",
+              "optim"
+            ]
+          },
+          "game": {
+            "description": "Game",
+            "type": "string",
+            "enum": [
+              "dice"
+            ]
+          },
+          "amount": {
+            "description": "Amount",
+            "type": "number",
+            "example": "0.002"
+          },
+          "rule": {
+            "description": "Rule",
+            "type": "string",
+            "enum": [
+              "over",
+              "under"
+            ]
+          },
+          "multiplier": {
+            "description": "Multiplier",
+            "type": "number",
+            "example": "1.98"
+          },
+          "bet_value": {
+            "description": "Bet value",
+            "type": "number",
+            "example": "49.99"
+          }
+        }
+      },
+      "BetResponse": {
+        "type": "object",
+        "properties": {
+          "bet": {
+            "description": "Bet details",
+            "type": "object",
+            "properties": {
+              "hash": {
+                "description": "Hash",
+                "type": "string",
+                "minLength": 36,
+                "maxLength": 36,
+                "example": "3deb5a81-d914-445a-9820-fdd655430bde"
+              },
+              "nonce": {
+                "description": "Nonce",
+                "type": "integer",
+                "example": 1
+              },
+              "currency": {
+                "description": "Currency",
+                "type": "string",
+                "enum": [
+                  "btc",
+                  "eth",
+                  "ltc",
+                  "doge",
+                  "trx",
+                  "bch",
+                  "xrp"
+                ]
+              },
+              "amount": {
+                "description": "Amount",
+                "type": "string",
+                "example": "0.0001"
+              },
+              "profit": {
+                "description": "Profit",
+                "type": "string",
+                "example": "0.00000001"
+              },
+              "multiplier": {
+                "description": "Multiplier",
+                "type": "string",
+                "example": "1.98"
+              },
+              "bet_value": {
+                "description": "Bet value",
+                "type": "string",
+                "example": "49.99"
+              },
+              "result_value": {
+                "description": "Result value",
+                "type": "string",
+                "example": "1.65"
+              },
+              "state": {
+                "description": "State of bet",
+                "type": "string",
+                "enum": [
+                  "loss",
+                  "win"
+                ]
+              },
+              "published_at": {
+                "description": "Published at timestamp",
+                "type": "integer",
+                "example": 1582549252
+              },
+              "game": {
+                "description": "Game details",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Game id",
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "name": {
+                    "description": "Game name",
+                    "type": "string",
+                    "enum": [
+                      "dice"
+                    ]
+                  },
+                  "margin": {
+                    "description": "Margin",
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "min_roll": {
+                    "description": "Min roll",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "max_roll": {
+                    "description": "Max roll",
+                    "type": "string",
+                    "example": "99.99"
+                  }
+                }
+              }
+            }
+          },
+          "user_balance": {
+            "description": "User balance details",
+            "type": "object",
+            "properties": {
+              "amount": {
+                "description": "Amount",
+                "type": "string",
+                "example": "0.0199"
+              },
+              "currency": {
+                "description": "Currency",
+                "type": "string",
+                "enum": [
+                  "btc",
+                  "eth",
+                  "ltc",
+                  "doge",
+                  "trx",
+                  "bch",
+                  "xrp"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "ChangeClientSeedRequest": {
+        "type": "object",
+        "properties": {
+          "client_seed": {
+            "description": "Client seed",
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 64,
+            "example": "test12345test12345test"
+          }
+        }
+      },
+      "ChangeClientSeedResponse": {
+        "type": "object",
+        "properties": {
+          "seed": {
+            "description": "Client seed",
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 64,
+            "example": "test12345test12345test"
+          }
+        }
+      },
+      "ChangeServerSeedResponse": {
+        "type": "object",
+        "properties": {
+          "server_seed_hashed": {
+            "description": "Server seed",
+            "type": "string",
+            "minLength": 64,
+            "maxLength": 64,
+            "example": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+          }
+        }
+      },
+      "UserStatsRaceResponse": {
+        "type": "object",
+        "properties": {
+          "race": {
+            "description": "Current race",
+            "type": "object",
+            "properties": {
+              "waggered_btc": {
+                "description": "Waggered BTC",
+                "type": "string",
+                "example": "0.185853711003887"
+              },
+              "currency": {
+                "description": "Currency",
+                "type": "string",
+                "enum": [
+                  "btc"
+                ]
+              },
+              "prize": {
+                "description": "Prize",
+                "type": "string",
+                "example": "360.00"
+              },
+              "rank": {
+                "description": "Rank",
+                "type": "string",
+                "example": 1
+              },
+              "user": {
+                "description": "User details",
+                "type": "object",
+                "properties": {
+                  "login": {
+                    "description": "User Login",
+                    "type": "string",
+                    "example": "alice"
+                  },
+                  "uuid": {
+                    "description": "User UUID",
+                    "type": "string",
+                    "example": "f02670b1-1e24-4200-9553-e385e8dc0e1c"
+                  },
+                  "is_admin": {
+                    "description": "Flag to determine if user is admin",
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "is_moderator": {
+                    "description": "Flag to determine if user is moderator",
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "is_high_roller": {
+                    "description": "Flag to determine if user is high roller",
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "vip_level": {
+                    "description": "User vip level",
+                    "type": "integer",
+                    "example": 0
+                  },
+                  "joined": {
+                    "description": "User join date",
+                    "type": "string",
+                    "example": "2020-02-20"
+                  },
+                  "race_badge": {
+                    "description": "Race badge",
+                    "type": "object",
+                    "nullable": true,
+                    "properties": {
+                      "position": {
+                        "description": "Position on race",
+                        "type": "integer",
+                        "example": 2
+                      },
+                      "date": {
+                        "description": "Date time when the position was achieved",
+                        "type": "string",
+                        "example": "2020-02-27T10:50:44.000000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "UserStatsBetsResponse": {
+        "type": "object",
+        "properties": {
+          "dice": {
+            "description": "Dice game",
+            "type": "object",
+            "properties": {
+              "btc": {
+                "description": "Currency BTC",
+                "type": "object",
+                "properties": {
+                  "total_bets": {
+                    "description": "Total bets in currency BTC",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "win": {
+                    "description": "Bets won in currency BTC",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "lose": {
+                    "description": "Bets lost in currency BTC",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered": {
+                    "description": "Total waggered in currency BTC",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered_usd": {
+                    "description": "Total waggered in currency BTC exchanged into USD",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "currency": {
+                    "description": "Currency",
+                    "type": "string",
+                    "enum": [
+                      "btc"
+                    ]
+                  },
+                  "profit": {
+                    "description": "Profit in currency BTC",
+                    "type": "string",
+                    "example": "0"
+                  }
+                }
+              },
+              "eth": {
+                "description": "Currency ETH",
+                "type": "object",
+                "properties": {
+                  "total_bets": {
+                    "description": "Total bets in currency ETH",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "win": {
+                    "description": "Bets won in currency ETH",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "lose": {
+                    "description": "Bets lost in currency ETH",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered": {
+                    "description": "Total waggered in currency ETH",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered_usd": {
+                    "description": "Total waggered in currency ETH exchanged into USD",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "currency": {
+                    "description": "Currency",
+                    "type": "string",
+                    "enum": [
+                      "eth"
+                    ]
+                  },
+                  "profit": {
+                    "description": "Profit in currency ETH",
+                    "type": "string",
+                    "example": "0"
+                  }
+                }
+              },
+              "ltc": {
+                "description": "Currency LTC",
+                "type": "object",
+                "properties": {
+                  "total_bets": {
+                    "description": "Total bets in currency LTC",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "win": {
+                    "description": "Bets won in currency LTC",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "lose": {
+                    "description": "Bets lost in currency LTC",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered": {
+                    "description": "Total waggered in currency LTC",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered_usd": {
+                    "description": "Total waggered in currency LTC exchanged into USD",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "currency": {
+                    "description": "Currency",
+                    "type": "string",
+                    "enum": [
+                      "ltc"
+                    ]
+                  },
+                  "profit": {
+                    "description": "Profit in currency LTC",
+                    "type": "string",
+                    "example": "0"
+                  }
+                }
+              },
+              "doge": {
+                "description": "Currency DOGE",
+                "type": "object",
+                "properties": {
+                  "total_bets": {
+                    "description": "Total bets in currency DOGE",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "win": {
+                    "description": "Bets won in currency DOGE",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "lose": {
+                    "description": "Bets lost in currency DOGE",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered": {
+                    "description": "Total waggered in currency DOGE",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered_usd": {
+                    "description": "Total waggered in currency DOGE exchanged into USD",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "currency": {
+                    "description": "Currency",
+                    "type": "string",
+                    "enum": [
+                      "doge"
+                    ]
+                  },
+                  "profit": {
+                    "description": "Profit in currency DOGE",
+                    "type": "string",
+                    "example": "0"
+                  }
+                }
+              },
+              "trx": {
+                "description": "Currency TRX",
+                "type": "object",
+                "properties": {
+                  "total_bets": {
+                    "description": "Total bets in currency TRX",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "win": {
+                    "description": "Bets won in currency TRX",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "lose": {
+                    "description": "Bets lost in currency TRX",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered": {
+                    "description": "Total waggered in currency TRX",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered_usd": {
+                    "description": "Total waggered in currency TRX exchanged into USD",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "currency": {
+                    "description": "Currency",
+                    "type": "string",
+                    "enum": [
+                      "trx"
+                    ]
+                  },
+                  "profit": {
+                    "description": "Profit in currency TRX",
+                    "type": "string",
+                    "example": "0"
+                  }
+                }
+              },
+              "bch": {
+                "description": "Currency BCH",
+                "type": "object",
+                "properties": {
+                  "total_bets": {
+                    "description": "Total bets in currency BCH",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "win": {
+                    "description": "Bets won in currency BCH",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "lose": {
+                    "description": "Bets lost in currency BCH",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered": {
+                    "description": "Total waggered in currency BCH",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered_usd": {
+                    "description": "Total waggered in currency BCH exchanged into USD",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "currency": {
+                    "description": "Currency",
+                    "type": "string",
+                    "enum": [
+                      "bch"
+                    ]
+                  },
+                  "profit": {
+                    "description": "Profit in currency BCH",
+                    "type": "string",
+                    "example": "0"
+                  }
+                }
+              },
+              "xrp": {
+                "description": "Currency XRP",
+                "type": "object",
+                "properties": {
+                  "total_bets": {
+                    "description": "Total bets in currency XRP",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "win": {
+                    "description": "Bets won in currency XRP",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "lose": {
+                    "description": "Bets lost in currency XRP",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered": {
+                    "description": "Total waggered in currency XRP",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "waggered_usd": {
+                    "description": "Total waggered in currency XRP exchanged into USD",
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "currency": {
+                    "description": "Currency",
+                    "type": "string",
+                    "enum": [
+                      "xrp"
+                    ]
+                  },
+                  "profit": {
+                    "description": "Profit in currency XRP",
+                    "type": "string",
+                    "example": "0"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "UserBalancesResponse": {
+        "type": "object",
+        "properties": {
+          "balances": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "amount": {
+                  "description": null,
+                  "type": "string",
+                  "example": "0.6980000000"
+                },
+                "currency": {
+                  "description": null,
+                  "type": "string",
+                  "enum": [
+                    "btc",
+                    "eth",
+                    "ltc",
+                    "doge",
+                    "trx",
+                    "bch",
+                    "xrp"
+                  ]
+                },
+                "withdraw_fee": {
+                  "description": null,
+                  "type": "string",
+                  "example": "0.0000500000"
+                },
+                "withdraw_minimum_amount": {
+                  "description": null,
+                  "type": "string",
+                  "example": "0.0001000000"
+                },
+                "payment_id_required": {
+                  "description": null,
+                  "type": "integer",
+                  "example": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

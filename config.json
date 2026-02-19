@@ -1,0 +1,46 @@
+{
+  "api": {
+    "base_url": "https://wolfbet.com/api/v1",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1IiwianRpIjoiNzJmOWZlZjY2ODE1YjA0NjUzZGIwNTVkM2Q5NWFjOGExN2EyM2EwMGRmNTNkNzk3ZTQyYmM0MTZmNDIxYmZlZjQ5MWI3NmNhZTM5ZWRkMTMiLCJpYXQiOjE3NzA4Nzg0MDguMzI1ODQxLCJuYmYiOjE3NzA4Nzg0MDguMzI1ODQ2LCJleHAiOjE4MDI0MTQ0MDguMzE3NDk1LCJzdWIiOiIzOTM5MzMiLCJzY29wZXMiOltdfQ.cLrnEV1VNqR9HrePEGe3JIeVhZJQS0zrCte3s1N64K0w-sLPjCuX3Zzt2hhCit71uZ7gxP_xIvGzxC09iGgBipPzZMUt9I39yn65l76CNfiVRSak3JSDd8nuWmWtgvneBfo-NvSeuqnefsSaS0W4e7_5fcg4jfyXj6anF9ibzxQlYvt5ZmrN15jXFQmDvlQouyBxxxgsKxLEf2CS6vWOo6O4e2oag8csnzPq3QLnPgv6ZnYD8nZBXbJDTDC8oLx05Elul3nC3d3yT8qS-DnDykbk4WSoedJ2Y2ldJ6mf0SlJzFXAPguYGqFxadd5TZBstTJBB37O1hk03btQjie8lYg2CcHfqEQWrjTX2FJoS3-jWoOKsDBudaVwJL2ytDEFccRbl8bRpv69UtYaWaRtM4fQ-6tNPpu0PwD2d6CAjN8UIhOyH94LAq2oT6_aXCAJOS_3cmmwVhbG1VZsGkVlK-zXwH83yUBsDT6pGk97H_8PeD1e0UeK8B8bO7X8__yFeNRCPJ173TD5IPzCdG8p292cyBudfmzrnGl2rsrapYgJbxKJNVcK0Tn7pgbTM_Ch3lOZOaTqPcxWHm-HxTyhh9vmOB4qgzCx2B8UERTc2Uhg3Ifs267NQHWYySrERMLVboqSavHCRYNmRX2b0J2smI39MdEabhISo6qfmi585WY",
+    "timeout_seconds": 20,
+    "retry_count": 3,
+    "rate_limit_wait_seconds": 60
+  },
+  "simple": {
+    "enabled": "ON",
+    "currency": "trx",
+    "hilo_fixed": "LOW",
+    "hilo_random": "OFF",
+    "bet_amount": 0.00000001,
+    "multiplier": 1.98,
+    "chance_random": "OFF",
+    "chance_random_min": 40.0,
+    "chance_random_max": 60.0,
+    "chance_random_precision": 2,
+    "system": "mining_v2",
+    "preset_prompt": "ON",
+    "reset_if_win": "ON",
+    "reset_if_loss": "OFF",
+    "increase_after_win_percent": 0,
+    "increase_after_loss_percent": 100,
+    "max_bet_stop": 0,
+    "balance_stop": 0,
+    "profit_stop": 0,
+    "stop_loss": 0,
+    "max_bets": 0,
+    "bet_interval_ms": 1000,
+    "replay_on_take_profit": "OFF",
+    "replay_on_stop_loss": "OFF",
+    "replay_after_sec": 5,
+    "replay_count": 0
+  },
+  "display": {
+    "history_style": "mining",
+    "sticky_stats_footer": "ON",
+    "coin_decimal_places": 8,
+    "balance_sync_mode": "hybrid",
+    "balance_refresh_every": 20,
+    "show_idr_value": "ON",
+    "idr_refresh_seconds": 30
+  }
+}
